@@ -51,3 +51,18 @@ def num_sessions():
     response.data.decode("utf-8")
     return result
 
+
+@app.route('/median_session_length')
+def median_session_length():
+    site_url = request.args.get('site_url')
+
+    sessions_df = sessionize_data(INPUT_DATA, site_url)
+    
+    median_session_length = sessions_df.groupby('session_id').last().session_duration.median()
+    
+    result = "Median session length for site %(site_url)s = %(median_session_length)s" % {
+        "site_url": site_url,
+        "median_session_length": median_session_length
+    }
+
+    return result
