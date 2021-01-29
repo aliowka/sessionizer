@@ -1,5 +1,5 @@
 import flask_unittest
-from server import app
+from app import app
 
 
 class TestFoo(flask_unittest.ClientTestCase):
@@ -28,7 +28,7 @@ class TestFoo(flask_unittest.ClientTestCase):
         for test_case in test_cases:
             site_url, expected_response = test_case
             response = client.get('/num_sessions?site_url=%s' % site_url)
-            assert response.data == expected_response
+            assert response.data.decode("utf-8") == expected_response
 
     def test_meidan_session_length(self, client):
         test_cases = (
