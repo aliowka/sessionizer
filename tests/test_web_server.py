@@ -29,8 +29,9 @@ class TestFoo(flask_unittest.ClientTestCase):
             site_url, expected_response = test_case
             response = client.get('/num_sessions?site_url=%s' % site_url)
             assert response.data.decode("utf-8") == expected_response
+            print(test_case)
 
-    def test_meidan_session_length(self, client):
+    def test_median_session_length(self, client):
         test_cases = (
             # site_url,     expected_response
             ('www.s_1.com', 'Median session length for site www.s_1.com = 1353.0'),
@@ -41,7 +42,7 @@ class TestFoo(flask_unittest.ClientTestCase):
             # FIXME: this case returns 1374.0 instead of 1375.0 on my linux machine.
             # It may be related to different floating point implementations on different 
             # hardware/softaware systems as described here: https://stackoverflow.com/a/53144736 or may be not :)
-            # In order to investigate this issue further, I would test both systems face-to-face 
+            # In order to investigate this issue further, it's better to test both systems face-to-face 
             # which is out of the scope of this task. Meanwhile commenting this out :(
             # ('www.s_5.com', 'Median session length for site www.s_5.com = 1375.0'),
 
@@ -56,23 +57,25 @@ class TestFoo(flask_unittest.ClientTestCase):
             site, expected_response = test_case
             response = client.get('/median_session_length?site_url=%s' % site)
             assert response.data.decode("utf-8") == expected_response
+            print(test_case)
 
     def test_num_unique_visited_sites(self, client):
         test_cases = (
             # vosotor_id,     expected_response
-            ('1', 'Num of unique sites for visitor_1=3'),
-            ('2', 'Num of unique sites for visitor_2=2'),
-            ('3', 'Num of unique sites for visitor_3=2'),
-            ('4', 'Num of unique sites for visitor_4=4'),
-            ('5', 'Num of unique sites for visitor_5=4'),
-            ('6', 'Num of unique sites for visitor_6=1'),
-            ('7', 'Num of unique sites for visitor_7=3'),
-            ('8', 'Num of unique sites for visitor_8=3'),
-            ('9', 'Num of unique sites for visitor_9=2'),
-            ('10', 'Num of unique sites for visitor_10=4')
+            ('visitor_1', 'Num of unique sites for visitor_1 = 3'),
+            ('visitor_2', 'Num of unique sites for visitor_2 = 2'),
+            ('visitor_3', 'Num of unique sites for visitor_3 = 2'),
+            ('visitor_4', 'Num of unique sites for visitor_4 = 4'),
+            ('visitor_5', 'Num of unique sites for visitor_5 = 4'),
+            ('visitor_6', 'Num of unique sites for visitor_6 = 1'),
+            ('visitor_7', 'Num of unique sites for visitor_7 = 3'),
+            ('visitor_8', 'Num of unique sites for visitor_8 = 3'),
+            ('visitor_9', 'Num of unique sites for visitor_9 = 2'),
+            ('visitor_10', 'Num of unique sites for visitor_10 = 4')
         )
 
         for test_case in test_cases:
-            site, expected_response = test_case
-            response = client.get('/num_unique_visited_sites?visitor_id=%s' % site)
-            assert response.data == expected_response
+            visitor_id, expected_response = test_case
+            response = client.get('/num_unique_visited_sites?visitor_id=%s' % visitor_id)
+            assert response.data.decode("utf-8") == expected_response
+            print(test_case)

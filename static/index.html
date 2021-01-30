@@ -1,0 +1,49 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id='result'>Creating Sessions...<br></div>
+<script type="text/javascript">
+    $(document).ready(function()
+    {   
+       var text = "Creating Sessions...<br>";
+       var responses_num = 0;
+       for(var i = 1; i <= 10; i++)
+       {
+            $.ajax(
+            {       url: 'http://127.0.0.1:5000/num_sessions?site_url=www.s_' + i + '.com',
+                    type: 'GET',
+                success: function(data) {
+                    responses_num++;
+                    text = text + data + "<br>";
+                    $("#result").html(text);
+                    if (responses_num == 10){
+                        $("#other_queries").show();
+                    }
+                },
+                error: function(error){
+                    responses_num++; 
+                    text = text + error + "<br>";
+                    $("#result").html(text);
+                }
+            });
+        };
+    });
+</script>
+<br>
+<div id="other_queries" hidden=true>
+    Now queries will work fast :)<br>Try some examples below:<br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_1.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_1.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_2.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_2.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_3.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_3.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_1.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_1.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_2.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_2.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_3.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_3.com</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_1">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_1</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_2">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_2</a><br>
+    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_3">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_3</a><br>
+</div>
+</body>
+</html>

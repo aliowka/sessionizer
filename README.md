@@ -1,8 +1,14 @@
-## Running server from sourcecode ##
-`git clone http://github.com/aliowka/sw-assignment`
-`cd sw-assignment`
+## Running server from docker ##
+`docker pull aliowka/sessionizer`
+`docker run -p 5000:5000 aliowka/sessionizer`
 
-### Create the environmen ###
+Navigate in browser to the link http://localhost:5000
+
+## Running server from sourcecode ##
+`git clone http://github.com/aliowka/sessionizer`
+`cd sessionizer`
+
+### Create the environment ###
 `python3 -m venv venv`
 
 ### Activate the environment ###
@@ -13,17 +19,10 @@
 
 ### Run tests ###
 `export PYTHONPATH=$(pwd)`
-`pytest tests`
+`export FLASK_APP src/app.py`
+`pytest tests -v`
 
 ### Run web-server ###
-`python web-server.py`
+`flask run`
 
-Ther server will start on http://localhost:5000/ 
-
-## Running server from docker ##
-`docker pull aliowka/sw-assigment`
-`docker run -p 5000:5000`
-
-## Executing queries ##
-curl http://localhost:5000/
-
+The server will start on http://localhost:5000/ 
