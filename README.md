@@ -34,7 +34,10 @@ GET num_unique_visited_sites?visitor_id=visitor_1
 ```
 
 ---
+>## Working solution is available [here](http://sessionizer.ddns.net:5000/) ##
+>Query it with curl or any http client. Or just open it in browser :)
 
+---
 
 ## Running server from docker ##
 ```
