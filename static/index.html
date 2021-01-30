@@ -3,12 +3,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
-<div id='result'>Creating Sessions...<br></div>
+<div>Creating Sessions... <span id='num'>0/10</span> sites processed<br></div>
+<div id='result'></div>
 <script type="text/javascript">
     $(document).ready(function()
-    {   
-       var text = "Creating Sessions...<br>";
+    {  
+       var text = "";
        var responses_num = 0;
        for(var i = 1; i <= 10; i++)
        {
@@ -19,6 +19,7 @@
                     responses_num++;
                     text = text + data + "<br>";
                     $("#result").html(text);
+                    $("#num").text(responses_num + "/10");
                     if (responses_num == 10){
                         $("#other_queries").show();
                     }
