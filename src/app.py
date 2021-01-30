@@ -18,6 +18,10 @@ INPUT_DATA = None
 
 @app.before_first_request
 def init_input_data():
+    """
+    Initialize input data from csv files.
+    Called once before first request
+    """
     global INPUT_DATA
     INPUT_DATA = read_data_from_csv_files()
 
@@ -25,12 +29,31 @@ def init_input_data():
 @app.route('/')
 @cross_origin()
 def index():
+    """
+    Returns index.html which contains ajax requests 
+    for num_session with different sites. This will create 
+    the sessions for those different sites and cache the 
+    results, so that further requests will be fast. 
+
+    Returns:
+        str: html document
+    """
     return open("static/index.html").read()
 
 
 @app.route('/num_sessions')
 @cross_origin()
 def num_sessions():
+    """
+    Calculates num_session for a given site_url,
+    uses create_sessions_from_input_data
+    which is cached with memoization for the same site_url.
+    ajax requests from main page will precompute those results
+    to speedup further use.
+
+    Returns:
+        str: number of session for given site
+    """
     site_url = request.args.get('site_url')
 
     if not site_url:
@@ -49,6 +72,16 @@ def num_sessions():
 @app.route('/median_session_length')
 @cross_origin()
 def median_session_length():
+    """
+    Calculates median of session length for given site_url.
+    uses create_sessions_from_input_data,
+    which is cached with memoization for the same site_url
+    ajax requests from main page will precompute those 
+    results to speedup futher use.
+
+    Returns:
+        str: median of session lenghes for given site
+    """
     site_url = request.args.get('site_url')
 
     if not site_url:
@@ -68,6 +101,13 @@ def median_session_length():
 @app.route('/num_unique_visited_sites')
 @cross_origin()
 def num_unique_visited_sites():
+    """
+    This method *currently* does not require any precomputations since it works 
+    fast on provided input data.
+
+    Returns:
+        str: number of unique visited sites for specified visitor
+    """
     visitor_id = request.args.get('visitor_id')
 
     if not visitor_id:
