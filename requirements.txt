@@ -3,3 +3,4 @@ flask-unittest==0.1.1
 pandas==1.2.1
 pytest==6.2.2
 memoization==0.3.2
+flask-cors==3.0.10

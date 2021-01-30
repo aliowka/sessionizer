@@ -2,12 +2,16 @@ import time
 import logging
 import pandas as pd
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from utils import create_sessions_from_input_data, read_data_from_csv_files
+
 
 app = Flask(__name__,
             static_url_path='',
             static_folder='static')
+cors = CORS(app)
 app.logger.setLevel(logging.DEBUG)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 INPUT_DATA = None
 
@@ -19,11 +23,13 @@ def init_input_data():
 
 
 @app.route('/')
+@cross_origin()
 def index():
     return open("static/index.html").read()
 
 
 @app.route('/num_sessions')
+@cross_origin()
 def num_sessions():
     site_url = request.args.get('site_url')
 
@@ -41,6 +47,7 @@ def num_sessions():
 
 
 @app.route('/median_session_length')
+@cross_origin()
 def median_session_length():
     site_url = request.args.get('site_url')
 
@@ -59,6 +66,7 @@ def median_session_length():
 
 
 @app.route('/num_unique_visited_sites')
+@cross_origin()
 def num_unique_visited_sites():
     visitor_id = request.args.get('visitor_id')
 
