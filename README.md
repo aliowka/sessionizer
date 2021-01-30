@@ -2,14 +2,14 @@
 This solution uses Pandas - Python Data Analysis Library for aggregating data from provided CSV files and processing the required queries. 
 Python Flask is used to serve the queries with REST API.
 Sessionizing is done by grouping the data to chunks which are specific to a site and a visitor for example here is the chunk, representing all visits of `visitor_1` to `www.s_1.com`:
-![site visitor visits](./imgs/site_visito_visits.png)
+![site visitor visits](https://github.com/aliowka/sessionizer/blob/master/static/imgs/site_visito_visits.png)
 
 Now we can look at visits timestams and find the time difference between each visit. If the difference less than 30 min we will mark those visits with the same session_id. We will change session_id (increase by 1) if the visits time stamps differ more than in 30 min.
 
 While doing this we can also calculate a session duration.
 
 Instead of updating existing data table (DataFrame) it's faster to create new one (`sessisons_df`) which has the follwoing fields:
-![sessionized](./imgs/sessionizing.png)
+![sessionized](https://github.com/aliowka/sessionizer/blob/master/static/imgs/sessionizing.png)
 On the picture, `visitor_1002` visits separated to 2 different sessions (marked with session_id 4 and 5) starting at the index 16 as a result of the difference between visits times (1347888253 - 1347869050 = 19203 sec) which is greater than 30 min. Session duration was 2770 sec for session_id 4 and 469 sec for session_id 5.
 
 This is all we need in order to be able to efficiently answer required queries.
