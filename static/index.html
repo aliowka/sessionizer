@@ -13,7 +13,7 @@
        for(var i = 1; i <= 10; i++)
        {
             $.ajax(
-            {       url: 'http://127.0.0.1:5000/num_sessions?site_url=www.s_' + i + '.com',
+            {       url: '/num_sessions?site_url=www.s_' + i + '.com',
                     type: 'GET',
                 success: function(data) {
                     responses_num++;
@@ -35,16 +35,16 @@
 </script>
 <br>
 <div id="other_queries" hidden=true>
-    Now queries will work fast :)<br>Try some examples below:<br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_1.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_1.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_2.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_2.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_sessions?site_url=www.s_3.com">http://127.0.0.1:5000/num_sessions?site_url=www.s_3.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_1.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_1.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_2.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_2.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/median_session_length?site_url=www.s_3.com">http://127.0.0.1:5000/median_session_length?site_url=www.s_3.com</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_1">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_1</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_2">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_2</a><br>
-    <a target="_blank" href="http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_3">http://127.0.0.1:5000/num_unique_visited_sites?visitor_id=visitor_3</a><br>
+    Now queries will work faster :)<br>Try some examples below:<br>
+    <a target="_blank" href="/num_sessions?site_url=www.s_1.com">/num_sessions?site_url=www.s_1.com</a><br>
+    <a target="_blank" href="/num_sessions?site_url=www.s_2.com">/num_sessions?site_url=www.s_2.com</a><br>
+    <a target="_blank" href="/num_sessions?site_url=www.s_3.com">/num_sessions?site_url=www.s_3.com</a><br>
+    <a target="_blank" href="/median_session_length?site_url=www.s_1.com">/median_session_length?site_url=www.s_1.com</a><br>
+    <a target="_blank" href="/median_session_length?site_url=www.s_2.com">/median_session_length?site_url=www.s_2.com</a><br>
+    <a target="_blank" href="/median_session_length?site_url=www.s_3.com">/median_session_length?site_url=www.s_3.com</a><br>
+    <a target="_blank" href="/num_unique_visited_sites?visitor_id=visitor_1">/num_unique_visited_sites?visitor_id=visitor_1</a><br>
+    <a target="_blank" href="/num_unique_visited_sites?visitor_id=visitor_2">/num_unique_visited_sites?visitor_id=visitor_2</a><br>
+    <a target="_blank" href="/num_unique_visited_sites?visitor_id=visitor_3">/num_unique_visited_sites?visitor_id=visitor_3</a><br>
 </div>
 </body>
 </html>
